@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+/*RESET*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* VARIABLES */
+:root {
+
+    /* COLORES */
+    --color-primary: #00635B;
+    --color-secondary: #EA7644;
+    --color-accent: #C5EFD3;
+    --color-light: #FFFFFF;
+    --color-dark: #343a40;
+
+    /* TIPOGRAFIA BASE */
+    --font-family-base: "Titillium Web", system-ui, sans-serif;
+
+    /* WEIGHTS */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+
+    /* ESTILO */
+    --font-style-normal: normal;
+    --font-style-italic: italic;
+
+    /* SEMANTICA */
+    --font-title-weight: var(--font-weight-bold);
+    --font-title-style: var(--font-style-normal);
+
+    --font-key-weight: var(--font-weight-regular);
+    --font-key-style: var(--font-style-normal);
+
+    --font-body-weight: var(--font-weight-light);
+    --font-body-style: var(--font-style-italic);
+}
+
+
+/* =========================
+    HEADER
+========================= */
+header {
+    background-color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 70px;
+}
+
+/*LOGO*/
+.logo a {
+    display: inline-flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+/*NAV */
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav ul {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    display: flex;
+}
+
+.nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-family-base);
+    font-weight: var(--font-key-weight);
+    font-style: var(--font-key-style);
+    color: var(--color-accent);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    transition:
+        color 0.25s ease,
+        transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.25s ease;
+}
+
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.nav a:hover::after,
+.nav a:focus-visible::after {
+    transform: scaleX(1);
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+    color: var(--color-light);
+}
+
+.nav a:focus {
+    outline: none;
+}
+
+.nav a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 6px;
+}
+
+
+/* ===============================
+    BOTÓN HAMBURGUESA
+================================ */
+.menu-toggle {
+    display: none;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    position: absolute;
+    left: 10px;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-light);
+    border-radius: 2px;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.menu-toggle span:nth-child(1) { top: 14px; }
+.menu-toggle span:nth-child(2) { top: 21px; }
+.menu-toggle span:nth-child(3) { top: 28px; }
+
+/* Estado activo → X */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ===============================
+    MENÚ RESPONSIVE
+================================ */
+@media screen and (max-width: 550px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav {
+        position: fixed;
+        inset: 0 0 0 auto;
+        width: 75%;
+        max-width: 320px;
+        background-color: var(--color-accent);
+        padding: 5rem 2rem 2rem;
+
+        transform: translateX(100%);
+        transition: transform 0.45s cubic-bezier(0.77, 0, 0.18, 1);
+        z-index: 1000;
+    }
+
+    .nav::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.205);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .nav.visible {
+        transform: translateX(0);
+    }
+
+    .nav.visible::before {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.8rem;
+        align-items: flex-end;
+    }
+
+    .nav-list a {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--color-primary);
+        text-decoration: none;
+        position: relative;
+    }
+
+    .nav-list a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        right: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--color-secondary);
+        transition: width 0.3s ease;
+    }
+
+    .nav-list a:hover::after {
+        width: 100%;
+    }
+}

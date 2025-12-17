@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
     <title>Bettering</title>
 </head>
+
 <body>
-    
+    <header class="header">
+    <div class="logo">
+        <a href="./index.html">
+            <img src="./img/logo.png" alt="logo-bettering">
+        </a>
+    </div>
+
+    <!-- BOTÓN HAMBURGUESA -->
+    <button 
+        class="menu-toggle" 
+        id="abrir"
+        aria-label="Abrir menú"
+        aria-controls="nav"
+        aria-expanded="false"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- MENÚ -->
+    <nav class="nav" id="nav" aria-label="Navegación principal">
+        <ul class="nav-list">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Cursos</a></li>
+            <li><a href="#">Acerca de</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<script src="./js/main.js"></script>
 </body>
+
+
 </html>

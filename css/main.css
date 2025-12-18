@@ -184,7 +184,7 @@ header {
     width: 75%;
     max-width: 320px;
 
-    background: rgba(197, 239, 211, 0.63);
+    background: rgba(222, 255, 233, 0.801);
     backdrop-filter: blur(14px) saturate(120%);
     -webkit-backdrop-filter: blur(14px) saturate(120%);
 
@@ -227,7 +227,7 @@ header {
     .nav-list a {
         font-size: 1.1rem;
         font-weight: 600;
-        color: var(--color-primary);
+        color: var(--color-light);
         text-decoration: none;
         position: relative;
     }

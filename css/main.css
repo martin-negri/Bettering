@@ -43,7 +43,7 @@
 
 
 /* =========================
-    HEADER
+            HEADER
 ========================= */
 header {
     background-color: var(--color-primary);
@@ -134,9 +134,7 @@ header {
 }
 
 
-/* ===============================
-    BOTÓN HAMBURGUESA
-================================ */
+/* BOTÓN HAMBURGUESA */
 .menu-toggle {
     display: none;
     position: relative;
@@ -162,7 +160,7 @@ header {
 .menu-toggle span:nth-child(2) { top: 21px; }
 .menu-toggle span:nth-child(3) { top: 28px; }
 
-/* Estado activo → X */
+
 .menu-toggle.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
@@ -173,9 +171,7 @@ header {
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* ===============================
-    MENÚ RESPONSIVE
-================================ */
+/*MENÚ RESPONSIVE*/
 @media screen and (max-width: 550px) {
 
     .menu-toggle {
@@ -183,17 +179,24 @@ header {
     }
 
     .nav {
-        position: fixed;
-        inset: 0 0 0 auto;
-        width: 75%;
-        max-width: 320px;
-        background-color: var(--color-accent);
-        padding: 5rem 2rem 2rem;
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: 75%;
+    max-width: 320px;
 
-        transform: translateX(100%);
-        transition: transform 0.45s cubic-bezier(0.77, 0, 0.18, 1);
-        z-index: 1000;
-    }
+    background: rgba(197, 239, 211, 0.63);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+
+    padding: 5rem 2rem 2rem;
+
+    box-shadow: -12px 0 32px rgba(0, 0, 0, 0.25);
+
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.77, 0, 0.18, 1);
+    z-index: 1000;
+}
+
 
     .nav::before {
         content: "";
@@ -242,5 +245,184 @@ header {
 
     .nav-list a:hover::after {
         width: 100%;
+    }
+}
+
+/* =========================
+            HERO
+========================= */
+.hero {
+    position: relative;
+    min-height: calc(95vh - 70px); /* altura total menos el header */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url("../img/fondo-hero.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 4rem 2rem;
+    overflow: hidden;
+}
+
+/* Overlay para legibilidad */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 99, 91, 0.85) 0%,
+        rgba(0, 99, 91, 0.65) 100%
+    );
+    z-index: 1;
+}
+
+/* CONTENEDOR */
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 1800px;
+    width: 90%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 5rem;
+}
+
+
+/* LOGO HERO */
+.hero-logo img {
+    max-width: 730px;
+    width: 100%;
+    height: auto;
+}
+
+/* TEXTO */
+.hero-tex {
+    color: var(--color-light);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* TÍTULO */
+.hero-tex h1 {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-title-weight);
+    font-style: var(--font-title-style);
+
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    line-height: 1.15;
+
+    margin-bottom: 1rem;
+    text-align: center;
+    max-width: 22ch;
+}
+
+.hero-tex h1 span {
+    display: block;
+    margin-top: 0.25rem;
+
+    font-weight: var(--font-weight-regular);
+    font-style: var(--font-style-italic);
+    color: var(--color-light);
+}
+
+/* PÁRRAFO */
+.hero-tex p {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-body-weight);
+    font-style: normal;
+
+    font-size: 1.25rem;
+    line-height: 1.6;
+
+    max-width: 42ch;
+
+    text-align: center;
+    opacity: 0.95;
+}
+
+/* BOTÓN */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-bold);
+    font-style: var(--font-style-normal);
+
+    padding: 0.85rem 2.2rem;
+    border-radius: 999px;
+    margin-top: 1rem;
+
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    text-decoration: none;
+
+    transition:
+        transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+    background-color: #f08455;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.btn-primary:focus {
+    outline: none;
+}
+
+.btn-primary:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+
+
+/* HERO RESPONSIVE*/
+@media screen and (max-width: 900px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-tex p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-logo {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .hero-logo img {
+        max-width: 260px;
+    }
+
+    .hero-tex h1 {
+        font-size: 2rem;
+    }
+
+    .hero-tex p {
+        font-size: 1.1rem;
     }
 }
